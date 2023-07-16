@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:gui="http://schemas.haulmont.com/cuba/spring/cuba-gui.xsd">
+
+    <!-- Annotation-based beans -->
+    <context:component-scan base-package="com.company.platform"/>
+    
+    <gui:screens base-packages="com.company.platform.web"/>
+    <bean id="platform_proxyCreator" class="com.haulmont.cuba.web.sys.remoting.WebRemoteProxyBeanCreator">
+        <property name="serverSelector" ref="cuba_ServerSelector"/>
+        <property name="remoteServices">
+            <map>
+                <entry key="platform_QuestionService" value="com.company.platform.service.QuestionService"/>
+                <entry key="platform_ChapterService" value="com.company.platform.service.ChapterService"/>
+                <entry key="platform_CourseService" value="com.company.platform.service.CourseService"/>
+                <entry key="platform_EmployeeChapterService"
+                       value="com.company.platform.service.EmployeeChapterService"/>
+                <entry key="platform_EmployeeService" value="com.company.platform.service.EmployeeService"/>
+                <entry key="platform_EmployeeCourseService" value="com.company.platform.service.EmployeeCourseService"/>
+            </map>
+        </property>
+    </bean>
+
+</beans>

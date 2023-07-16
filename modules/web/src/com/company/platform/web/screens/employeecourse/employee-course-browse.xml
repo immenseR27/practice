@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://employeeCourseBrowse.caption"
+        focusComponent="employeeCoursesTable"
+        messagesPack="com.company.platform.web.screens.employeecourse">
+    <data readOnly="true">
+        <collection id="employeeCoursesDc"
+                    class="com.company.platform.entity.EmployeeCourse">
+            <view extends="_local">
+                <property name="employee" view="_minimal"/>
+                <property name="course" view="_minimal"/>
+            </view>
+            <loader id="employeeCoursesDl">
+                <query>
+                    <![CDATA[select e from platform_EmployeeCourse e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="employeeCoursesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="employeeCoursesTable"
+                dataLoader="employeeCoursesDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="employeeCoursesTable"
+                    width="100%"
+                    dataContainer="employeeCoursesDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="employee"/>
+                <column id="course"/>
+                <column id="startDateTime"/>
+                <column id="endDateTime"/>
+                <column id="courseStatus"/>
+                <column id="progress"/>
+                <column id="examStatus"/>
+                <column id="examScore"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="employeeCoursesTable.create"/>
+                <button id="editBtn" action="employeeCoursesTable.edit"/>
+                <button id="removeBtn" action="employeeCoursesTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

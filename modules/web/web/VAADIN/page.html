@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #buttonPanel{
+            display: flex;
+            justify-content: center;
+        }
+
+        #delBtn{
+            position: relative;
+            left: 50%;
+            transform: translate(-50%, 0);
+        }
+
+        textarea {
+            height: 200px;
+            width: 1500px;
+            font-size: 20px;
+        }
+
+        input[type="text"] {
+            width: 1500px;
+            font-size: 25px;
+        }
+
+        input[type="file"] {
+            display:block;
+	        margin:auto;
+        }
+
+        img{
+            display:block;
+	        margin:auto;
+	        max-width: 700px;
+	        max-height: 700px;
+        }
+    </style>
+    <script type="text/javascript">
+        var container = document.createElement("div");
+        var headCount = 0;
+        var txtCount = 0;
+        var imgCount = 0;
+
+        function addElement(elementName){
+
+            var divElement = document.getElementById("responce");
+            var div = document.createElement("div");
+            var divId;
+            var element;
+            var elementId;
+            var view;
+            var viewId;
+            var del = document.createElement("button");
+            var delId;
+
+            switch(elementName){
+                case 'head':
+                    headCount += 1;
+                    divId = "headDiv"+headCount;
+                    elementId = "head"+headCount;
+                    viewId = "headView"+headCount;
+                    delId = "headDel"+headCount;
+                    element = document.createElement("input");
+                    element.type = "text";
+                    element.placeholder = "Текст заголовка";
+                    view = document.createTextNode("");
+                    element.onchange = () => changeTxtView(element, view);
+                    break;
+                case 'text':
+                    txtCount += 1;
+                    divId = "txtDiv"+txtCount;
+                    elementId = "txt"+txtCount;
+                    delId = "txtDel"+txtCount;
+                    element = document.createElement("textarea");
+                    element.placeholder = "Текст абзаца";
+                    view = document.createTextNode("");
+                    element.onchange = () => changeTxtView(element, view);
+                    break;
+                case 'image':
+                    imgCount += 1;
+                    divId = "imgDiv"+imgCount;
+                    elementId = "image"+imgCount;
+                    delId = "imgDel"+imgCount;
+                    element = document.createElement("div");
+                    var element1 = document.createElement("img");
+                    element1.id = "image";
+                    view = document.createElement("img");
+                    var element2 = document.createElement("input");
+                    element2.type = "file";
+                    element2.onchange = function (evt) {
+                        var tgt = evt.target || window.event.srcElement,
+                        files = tgt.files;
+                        if (FileReader && files && files.length) {
+                            var fr = new FileReader();
+                            fr.onload = function () {
+                                document.element1.src = fr.result;
+                                changeImgView(element1, view);
+
+                            }
+                            fr.readAsDataURL(files[0]);
+
+
+                        }
+                    }
+                    element.append(element1, element2);
+                    break;
+            }
+
+            div.id = divId;
+            element.id = elementId;
+            container.appendChild(view);
+            div.appendChild(element);
+            del.id = delId;
+            del.class = "delBtn";
+            del.innerText = "Удалить";
+
+            switch(elementName){
+                case 'head':
+                    del.onclick = () => removeElement(view, div, headCount);
+                    break;
+                case 'text':
+                    del.onclick = () => removeElement(view, div, txtCount);
+                    break;
+                case 'image':
+                    del.onclick = () => removeElement(view, div, imgCount);
+                    break;
+            }
+
+            div.appendChild(del);
+            divElement.appendChild(div);
+
+        }
+
+    function changeTxtView(element, view){
+        view.value = element.value;
+    }
+
+    function changeImgView(element, view){
+        alert("new picture!");
+
+        view.src = element.src;
+    }
+
+    function removeElement(view, div, count){
+         container.removeChild(view);
+         document.getElementById(div.id).remove();
+         count -= 1;
+        }
+
+    function saveChanges(){
+        alert ("helo");
+        var content = container.childNodes.length;
+        alert(content);
+    }
+    </script>
+</head>
+<body>
+<div id="responce"></div>
+<div id="buttonPanel">
+    <input type="button" value="Заголовок" onclick="addElement('head')"/>
+    <input type="button" value="Текст" onclick="addElement('text')"/>
+    <input type="button" value="Рисунок" onclick="addElement('image')"/>
+</div>
+<input type="button" value="Сохранить" onclick="saveChanges()"/>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://questionBrowse.caption"
+        focusComponent="questionsTable"
+        messagesPack="com.company.platform.web.screens.question">
+    <data readOnly="true">
+        <collection id="questionsDc"
+                    class="com.company.platform.entity.Question">
+            <view extends="_local">
+                <property name="chapter" view="_minimal">
+                    <property name="course" view="_minimal"/>
+                </property>
+            </view>
+            <loader id="questionsDl">
+                <query>
+                    <![CDATA[select e from platform_Question e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="questionsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="questionsTable"
+                dataLoader="questionsDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="questionsTable"
+                    width="100%"
+                    dataContainer="questionsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="chapter.course"/>
+                <column id="chapter"/>
+                <column id="text"/>
+                <column id="variant1"/>
+                <column id="variant2"/>
+                <column id="variant3"/>
+                <column id="variant4"/>
+                <column id="answer"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="questionsTable.create"/>
+                <button id="editBtn" action="questionsTable.edit"/>
+                <button id="removeBtn" action="questionsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

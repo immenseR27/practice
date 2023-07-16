@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://questionEdit.caption"
+        focusComponent="form"
+        messagesPack="com.company.platform.web.screens.question">
+    <data>
+        <instance id="questionDc"
+                  class="com.company.platform.entity.Question">
+            <view extends="_local">
+                <property name="chapter" view="_minimal">
+                    <property name="course" view="_minimal"/>
+                </property>
+            </view>
+            <loader/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="questionDc">
+            <column width="350px">
+                <pickerField id="courseField" property="chapter.course">
+                    <actions>
+                        <action id="lookup" type="picker_lookup"/>
+                        <action id="clear" type="picker_clear"/>
+                    </actions>
+                </pickerField>
+                <pickerField id="chapterField" property="chapter">
+                    <actions>
+                        <action id="lookup" type="picker_lookup"/>
+                        <action id="clear" type="picker_clear"/>
+                    </actions>
+                </pickerField>
+<!--                <textField id="chapterNumberField" property="chapter.number"/>-->
+<!--                <textField id="chapterNameField" property="chapter.name"/>-->
+                <textArea id="textField" property="text" rows="5"/>
+                <textArea id="variant1Field" property="variant1" rows="5"/>
+                <textArea id="variant2Field" property="variant2" rows="5"/>
+                <textArea id="variant3Field" property="variant3" rows="5"/>
+                <textArea id="variant4Field" property="variant4" rows="5"/>
+                <textField id="answerField" property="answer"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

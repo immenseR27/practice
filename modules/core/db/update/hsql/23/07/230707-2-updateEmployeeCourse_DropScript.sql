@@ -1,0 +1,10 @@
+alter table PLATFORM_EMPLOYEE_COURSE drop column CHAPTER1_SCORE__U73367 cascade ;
+alter table PLATFORM_EMPLOYEE_COURSE drop column CHAPTER2_SCORE__U70315 cascade ;
+alter table PLATFORM_EMPLOYEE_COURSE drop column CHAPTER3_SCORE__U04370 cascade ;
+alter table PLATFORM_EMPLOYEE_COURSE drop column CHAPTER4_SCORE__U95673 cascade ;
+alter table PLATFORM_EMPLOYEE_COURSE drop column CHAPTER5_SCORE__U72915 cascade ;
+alter table PLATFORM_EMPLOYEE_COURSE drop column CHAPTER6_SCORE__U03625 cascade ;
+alter table PLATFORM_EMPLOYEE_COURSE drop column CHAPTER7_SCORE__U83593 cascade ;
+alter table PLATFORM_EMPLOYEE_COURSE drop column CHAPTER8_SCORE__U53388 cascade ;
+alter table PLATFORM_EMPLOYEE_COURSE drop column CHAPTER9_SCORE__U89035 cascade ;
+alter table PLATFORM_EMPLOYEE_COURSE drop column CHAPTER10_SCORE__U69737 cascade ;

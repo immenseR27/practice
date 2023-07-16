@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://chapterList.caption"
+        messagesPack="com.company.platform.web.screens.chapter">
+
+    <facets>
+        <editorScreen id="chapterCreationDialog" entityClass="com.company.platform.entity.Chapter"
+                      screenClass="com.company.platform.web.screens.chapter.ChapterEdit" openMode="DIALOG"
+                      editMode="EDIT"/>
+    </facets>
+    <layout>
+        <vbox id="chapterListVBox"/>
+        <buttonsPanel id="buttonsPanel"/>
+    </layout>
+</window>

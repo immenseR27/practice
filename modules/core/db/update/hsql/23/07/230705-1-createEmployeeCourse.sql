@@ -1,0 +1,31 @@
+create table PLATFORM_EMPLOYEE_COURSE (
+    ID varchar(36) not null,
+    VERSION integer not null,
+    CREATE_TS timestamp,
+    CREATED_BY varchar(50),
+    UPDATE_TS timestamp,
+    UPDATED_BY varchar(50),
+    DELETE_TS timestamp,
+    DELETED_BY varchar(50),
+    --
+    EMPLOYEE_ID varchar(36),
+    COURSE_ID varchar(36),
+    START_DATETIME timestamp,
+    END_DATETIME timestamp,
+    COURSE_STATUS integer,
+    PROGRESS integer,
+    CHAPTER1_SCORE integer,
+    CHAPTER2_SCORE integer,
+    CHAPTER3_SCORE integer,
+    CHAPTER4_SCORE integer,
+    CHAPTER5_SCORE integer,
+    CHAPTER6_SCORE integer,
+    CHAPTER7_SCORE integer,
+    CHAPTER8_SCORE integer,
+    CHAPTER9_SCORE integer,
+    CHAPTER10_SCORE integer,
+    EXAM_STATUS integer,
+    EXAM_SCORE integer,
+    --
+    primary key (ID)
+);

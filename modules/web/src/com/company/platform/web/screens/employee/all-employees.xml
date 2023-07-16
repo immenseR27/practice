@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://allEmployees.caption"
+        focusComponent="employeesTable">
+        messagesPack="com.company.platform.web.screens.employee">
+    <data>
+        <collection id="employeeDc"
+                    class="com.company.platform.entity.Employee"
+                    fetchPlan="_base">
+            <loader id="employeeDl">
+                <query>
+                    <![CDATA[select e from platform_Employee e order by e.lastName]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="courseDc"
+                    class="com.company.platform.entity.Course"
+                    fetchPlan="_base">
+            <loader id="courseDl">
+                <query>
+                    <![CDATA[select c from platform_EmployeeCourse ec join ec.course c where ec.employee = :employee]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="employeeCourseDc"
+                    class="com.company.platform.entity.EmployeeCourse"
+                    fetchPlan="_base">
+            <loader id="employeeCourseDl">
+                <query>
+                    <![CDATA[select ec from platform_EmployeeCourse ec]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+
+    <facets>
+        <editorScreen id="courseAdditionDialog" entityClass="com.company.platform.entity.EmployeeCourse" container="employeeCourseDc"
+                      screenClass="com.company.platform.web.screens.employeecourse.EmployeeCourseEdit" openMode="DIALOG"
+                      editMode="EDIT"/>
+
+    </facets>
+
+    <layout>
+
+        <hbox id="mainBox" width="100%" height="100%" spacing="true">
+            <table id="employeesTable" width="100%" height="100%"
+                   dataContainer="employeeDc">
+                <columns>
+                    <column id="lastName"/>
+                    <column id="firstName"/>
+                </columns>
+            </table>
+            <vbox width="100%" height="100%">
+            <table id="coursesTable" width="100%" height="100%"
+                   dataContainer="courseDc">
+                <columns>
+                    <column id="name"/>
+                </columns>
+            </table>
+            <button id="addCourseToEmployee" caption="Добавить" invoke="addCourseToEmployee" align="TOP_RIGHT"/>
+            </vbox>
+        </hbox>
+    </layout>
+</window>

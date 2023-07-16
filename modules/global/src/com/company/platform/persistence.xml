@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+    <persistence-unit name="EducationalPlatform_v0" transaction-type="RESOURCE_LOCAL">
+
+        <class>com.company.platform.entity.Employee</class>
+        <class>com.company.platform.entity.Position</class>
+        <class>com.company.platform.entity.Course</class>
+        <class>com.company.platform.entity.EmployeeCourse</class>
+        <class>com.company.platform.entity.Chapter</class>
+        <class>com.company.platform.entity.Question</class>
+        <class>com.company.platform.entity.EmployeeChapter</class>
+    </persistence-unit>
+</persistence>

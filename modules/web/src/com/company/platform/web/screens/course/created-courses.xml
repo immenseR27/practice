@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://createdCourses.caption"
+        messagesPack="com.company.platform.web.screens.course">
+    <data>
+        <collection id="courseDc"
+                    class="com.company.platform.entity.Course"
+                    fetchPlan="_base">
+            <loader id="courseDl">
+                <query>
+                    <![CDATA[select c from platform_Course c where c.author = :employee]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <editorScreen id="courseCreationDialog" entityClass="com.company.platform.entity.Course" container="courseDc"
+                      screenClass="com.company.platform.web.screens.course.CourseEdit" openMode="DIALOG"
+                      editMode="EDIT"/>
+
+    </facets>
+
+    <layout>
+
+
+        <vbox id="courseBox"/>
+        <button id="createNewCourse" caption="Создать" invoke="createNewCourse"/>
+    </layout>
+</window>
